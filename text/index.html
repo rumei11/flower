@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta nama='referrer' content="no-referrer">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="">
+    <script src="../js/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+
+    <script>
+        // 能力监测
+        let id = 1;
+        function init(id) {
+            let xhr;
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            }
+            else if (window.ActiveXObject) {
+                xhr = new ActiveXObject();
+            }
+            else {
+                alert('当前访问错误，请更换浏览器')
+            }
+            // 监听
+            let arr = new Array(5).fill(0);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200 || xhr.status === 304) {
+                        // 定义模板
+                        let data = JSON.parse(xhr.responseText);
+                        data['pins'].forEach(element => {
+                            let div = document.createElement('div');
+                            let str = `
+                                  <img class= 'img' src="http://localhost:3001/image/${element['jpg-id']}" alt="">
+                                  <div class="container">
+                                  <p class="sty">${element['style']}</p>
+                                  <div class="introduce">
+                                   ${element['introduce']}
+                                  </div>
+                                  </div>
+                             `;
+                            div.innerHTML = str;
+                            let index = arr.indexOf(Math.min(...arr));
+                            let li = document.querySelectorAll('li')[index];
+                            // 现在高度= 原来高度/原来宽度*现在宽度
+                            arr[index] += Math.floor(element['height'] / element['width'] * 236) + 100;
+                            div.className = 'box';
+                            li.appendChild(div);
+                        })
+                    }
+                }
+            };
+            xhr.open('GET', `/jxDate/demo${id}.json`, true);
+            xhr.send();
+        }
+
+        document.onscroll = () => {
+            if (1000 > document.documentElement.offsetHeight - scrollY - document.documentElement.clientHeight) {
+                id++;
+                if (id < 4) {
+                    init(id);
+                }
+                else {
+                    id = 1;
+                }
+            }
+        }
+        init(id);
+    </script>
+
+</body>
+
+</html>

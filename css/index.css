@@ -1,0 +1,48 @@
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+html {
+ background-color: rgb(243, 237, 237);;
+}
+ul {
+width: 1496px;
+margin: 20px auto;
+display: flex;
+justify-content:space-around;
+
+}
+ul li{
+width: 236px;
+min-height: 10px;
+
+
+}
+.img {
+  display: block;
+  width: 236px;
+}
+
+ul li  .box{
+  margin: 20px 0;
+}
+ul li  .box p {
+  margin: 5px 0;
+  color: black;
+  font-size: 14px;
+  font-weight: 550;
+}
+ul li  .box .introduce {
+  
+  padding: 0 10px 0 0;
+  height: 30px;
+  width: 210px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+ 
+}

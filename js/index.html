@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js "></script>
+</head>
+<style>
+    div {
+        width: 210px;
+        display: inline-block;
+        margin-left: 10px;
+        background-color: red;
+    }
+</style>
+
+<body>
+    <div style="height: 100px;"></div>
+    <div style="height: 200px;"></div>
+    <div style="height: 300px;"></div>
+    <div style="height: 400px;"></div>
+    <script>
+        console.log($('div').eq(0).height(), $('div').eq(1).height(), $('div').eq(2).height(), $('div').eq(3).height());;
+    </script>
+</body>
+
+</html>
